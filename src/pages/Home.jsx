@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react'
-import MemeCard from './Card'
+import MemeCard from '../components/Card'
 import { getAllMemes } from '../api/memes';
 
 export default function Home() {
@@ -8,10 +8,13 @@ export default function Home() {
             getAllMemes().then((memes) => setData(memes.data.memes))
         },[]);
   return (
-    <div>
+    <>
+    <div className="row">
     {
-        data.map(el => <MemeCard img ={el.url}/>)
-    }
+        data.map(el =>
+          ( <MemeCard img ={el.url} title={el.name}/>
+          ))}
     </div>
+    </>
   )
 }
